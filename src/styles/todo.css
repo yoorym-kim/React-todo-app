@@ -1,0 +1,61 @@
+/* todo-list 컨테이너 */
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+/* 개별 todo */
+.todo {
+    margin: 10px 0;
+    height: 50px;
+    width: 90%;
+    border: 3px solid transparent;
+    background-color: #B4DBE5;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    transition: border-color 0.3s;
+}
+
+.todo:hover {
+    border-color: #FFFFFF;
+}
+
+.todo.done {
+    background-color: #C1BEC8;
+}
+
+.input-todo {
+    width: 70%;
+    font-size: 15px;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+    outline: none;
+}
+
+.input-todo.done {
+    text-decoration: line-through;
+}
+
+.input-todo.clicked {
+    border-bottom-color: #FFFFFF;
+}
+
+/* 버튼들 */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.change-todo img {
+    height: 15px;
+}
+
+.delete-todo img {
+    height: 18px;
+}

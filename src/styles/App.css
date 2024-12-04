@@ -1,0 +1,31 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: auto; /* 화면 가운데 정렬 */
+  background-color: #E27680;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+
+/* 헤더 */
+.header {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+.header h1 {
+  font-size: 20px;
+}
+
+.header .plus-todo {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 17px;
+  text-decoration: underline;
+}
