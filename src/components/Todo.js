@@ -18,23 +18,28 @@ function Todo({ todo, updateTodo, toggleTodoDone, deleteTodo }) {
         onChange={() => toggleTodoDone(todo.id)}
         />
 
-        
-        {isEditing ? (  //상태변수 isEditing의 값에 따라 조건부 렌더링 !!!!!!!!
+
+        {/* 상태변수 isEditing의 값에 따라 조건부 렌더링 !!!!!!!! */}
+        {isEditing ? (
         <input
             className="input-todo clicked"
             value={todo.text}
-            onChange={(e) => updateTodo(todo.id, e.target.value)} // onChange일때 사용자 입력값을 이벤트 타겟 value로 가져오기
-            onBlur={() => setIsEditing(false)} //onBlur일때 상태변수 바꿔주기
-            onKeyDown={(e) => e.key === "Enter" && setIsEditing(false)} //onkeydown 중 enter누를때,,
-            autoFocus  // input 렌더링시(isEditing이 true일때) 포커스 되도록 !!
+            // onChange일때 사용자 입력값을 이벤트 타겟 value로 가져오기
+            onChange={(e) => updateTodo(todo.id, e.target.value)}
+            //onBlur일때 상태변수 바꿔주기
+            onBlur={() => setIsEditing(false)}
+            //onkeydown 중 enter누를때,,
+            onKeyDown={(e) => e.key === "Enter" && setIsEditing(false)}
+            // input 렌더링시(isEditing이 true일때) 포커스 되도록 !!
+            autoFocus
         />
         ) : (
         <span
             className={`input-todo ${todo.isDone ? "done" : ""}`}
             onClick={() => setIsEditing(true)}
         >
-            {todo.text || "클릭하여 작성"  // || 연산자: Falsy 값(빈문자열)을 만나면 뒤쪽 값을 반환
-            }
+            {/* || 연산자: Falsy 값(빈문자열)을 만나면 뒤쪽 값을 반환(space holder처럼) */}
+            {todo.text || "클릭하여 작성"}
         </span>
         )}
 

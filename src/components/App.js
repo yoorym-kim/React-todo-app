@@ -1,5 +1,5 @@
-// 함수형 컨포넌트를 사용하므로 useState를 사용
-// this.state는 클래스 컴포넌트에서 사용, useState는 함수형 컴포넌트에서 사용
+// 함수형 컨포넌트를 사용, 훅으로 useState를 사용
+// this.state는 클래스 컴포넌트에서 Extends Component 해서 사용, useState, useEffect는 함수형 컴포넌트에서 사용
 import React, { useState } from "react";
 import "../styles/App.css"
 import Todo from "./Todo.js"
@@ -13,6 +13,7 @@ function App() {
     { id: 1, text: "", isDone: false },
   ]);
 
+  
   // state 업데이트 함수 ////
 
   // 새로운 Todo 추가
@@ -42,10 +43,6 @@ function App() {
 
   // JSX 문법 사용으로 UI 반환 /////////
 
-  // map으로 todos 배열 순회 -> todos 배열의 요소개수만큼 <Todo /> 컴포넌트를 생성해서 반환
-  // todo.id를 key값(리스트 렌더링에 필수!)으로 사용(고유값으로 씀)
-  // 부모(App)컴포넌트가 자식컴포넌트(<Todo />)에게 부모의 함수를 props로 전달해야함
-  // => 그래야 자식컴포넌트가 부모컴포넌트의 상태 조작 가능
   return (
     <main className="main">
       <header className="header">
@@ -54,9 +51,15 @@ function App() {
           새로운 TODO 추가하기
         </button>
       </header>
+
       <div className="todo-list">
+        {/* // map으로 todos 배열 순회 -> todos 배열의 요소개수만큼 <Todo /> 컴포넌트를 생성해서 반환 */}
         {todos.map(todo => ( 
+            // 부모(App)컴포넌트가 자식컴포넌트(<Todo />)에게 부모의 객체와 함수를 props로 전달해야함
+            // => 그래야 자식컴포넌트가 부모컴포넌트의 상태를 함수를 통해 조작 가능(직접적으론 x)
           <Todo
+            // todo.id를 key값(리스트 렌더링에 필수!)으로 사용(고유값으로 씀)
+            // key는 props에 포함되지 않으며 컴포넌트 내부에서 접근할 수 없음, 원한다면 값만 다른 변수에 따로 전달하기
             key={todo.id}
             todo={todo}
             updateTodo={updateTodo}
