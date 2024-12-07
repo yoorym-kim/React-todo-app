@@ -1,17 +1,19 @@
 // 함수형 컨포넌트를 사용, 훅으로 useState를 사용
 // this.state는 클래스 컴포넌트에서 Extends Component 해서 사용, useState, useEffect는 함수형 컴포넌트에서 사용
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/App.css"
 import Todo from "./Todo.js"
-
-
 
 // React의 루트 컴포넌트 App. 시작시 최초 호출
 function App() {
   // useState의 상태변수배열 & 호출시 상태변수값 변화시키는 함수(setter함수) 설정, 초기화
   const [todos, setTodos] = useState([
-    { id: 1, text: "", isDone: false },
+    { id: Date.now(), text: "", isDone: false },
   ]);
+
+  useEffect(()=>{
+    todos.forEach(todo => localStorage.setItem(`todo ${todo.id}`, JSON.stringify(todo)));
+  },[todos]);
 
   
   // state 업데이트 함수 ////
@@ -38,6 +40,7 @@ function App() {
   const deleteTodo = (id) => {
     //js의 filter 메서드. 콜백함수가 true 반환하는 요소만 포함된 배열 반환
     setTodos(todos.filter(todo => todo.id !== id));
+    localStorage.removeItem(`todo ${id}`);
   };
 
 
